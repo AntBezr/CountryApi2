@@ -1,8 +1,9 @@
-import { Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, Row } from 'react-bootstrap';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import { Outlet } from 'react-router-dom';
 import React from 'react';
+import { logout } from '../auth/firebase';
 
 const Layout = () => {
   return (
@@ -19,8 +20,15 @@ const Layout = () => {
                 <LinkContainer to="/countries">
                   <Nav.Link>Countries</Nav.Link>
                 </LinkContainer>
+                <LinkContainer to="/login">
+                  <Nav.Link>Login</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/register">
+                  <Nav.Link>Register</Nav.Link>
+                </LinkContainer>
               </Nav>
             </Navbar.Collapse>
+            <Button onClick={logout}>Logout</Button>
           </Container>
         </Navbar>
       </Row>
