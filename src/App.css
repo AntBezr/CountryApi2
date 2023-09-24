@@ -28,10 +28,19 @@
   color: #61dafb;
 }
 
+.landingBg {
+  background: url("https://images.unsplash.com/photo-1562504208-03d85cc8c23e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80") no-repeat center center/cover fixed;
+  width: 100vw;
+  height: 94vh;
+  filter: brightness(0.7);
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

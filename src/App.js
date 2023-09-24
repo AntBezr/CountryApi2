@@ -1,4 +1,5 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import "./App.css"
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 

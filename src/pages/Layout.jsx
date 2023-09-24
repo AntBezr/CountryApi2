@@ -1,15 +1,17 @@
 import { Button, Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { auth, logout } from '../auth/firebase';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import { Outlet } from 'react-router-dom';
 import React from 'react';
-import { logout } from '../auth/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Layout = () => {
+  const [user] = useAuthState(auth)
   return (
     <Container fluid>
       <Row>
-        <Navbar bg="light" variant="light">
+        <Navbar variant="dark" bg='dark' sticky='top'>
           <Container className="justify-content-end">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -20,15 +22,18 @@ const Layout = () => {
                 <LinkContainer to="/countries">
                   <Nav.Link>Countries</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/login">
-                  <Nav.Link>Login</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/register">
+                {!user ? <LinkContainer to="/register">
                   <Nav.Link>Register</Nav.Link>
-                </LinkContainer>
+                </LinkContainer> : ""}
+
               </Nav>
             </Navbar.Collapse>
-            <Button onClick={logout}>Logout</Button>
+            {user ? <Button onClick={logout} variant='light'>Logout</Button> :
+              <LinkContainer to="/login">
+                <Button variant='light'> Login</Button>
+
+              </LinkContainer>}
+
           </Container>
         </Navbar>
       </Row>
