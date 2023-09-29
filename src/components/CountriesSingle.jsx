@@ -15,7 +15,7 @@ const CountriesSingle = () => {
 
 
   const country = location.state.country
-
+  console.log(country);
   useEffect(() => {
     if (!country.capital) {
       setLoading(false)
@@ -49,37 +49,39 @@ const CountriesSingle = () => {
     )
   }
   return (
-    <Container>
-      <Row className="mt-4">
-        <Col  >
-          <Image src={country.flags.png} alt={country.flag} />
-          <h2 className="display-4">{country.name.common}</h2>
-          <h3>{country.capital}</h3>
-          {errors && (
-            <p>Sorry we don't have weather information for this country</p>
-          )}
-          {!errors && weather && (
-            <div>
-              <p>
-                Right now it is <strong>{parseInt(weather.main.temp)}</strong> degrees in {country.capital} and {weather.weather[0].description}
-              </p>
-              <Figure thumbnail className='figure'>
-                <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={`${weather.weather[0].description}`} className="img-thumbnail" />
-              </Figure>
-            </div>
-          )}
-        </Col>
-        <Col>
-          <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
-        </Col>
+    <div>
+      <Container>
+        <Row className='d-flex justify-content-around'>
+          <Col>
+            <Image thumbnail src={country.flags.png} alt={country.flag} />
+            <h2 className="display-4">{country.name.common}</h2>
+            <h3>{country.capital}</h3>
+            {errors && (
+              <p>Sorry we don't have weather information for this country</p>
+            )}
+            {!errors && weather && (
+              <div>
+                <p>
+                  Right now it is <strong>{parseInt(weather.main.temp)}</strong> degrees in {country.capital} and {weather.weather[0].description}
+                </p>
+                <Figure thumbnail className='figure'>
+                  <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={`${weather.weather[0].description}`} className="img-thumbnail" />
+                </Figure>
+              </div>
+            )}
+          </Col>
+          <Col>
+            <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
+          </Col>
 
-      </Row>
-      <Row>
-        <Col >
-          <Button variant='secondary' onClick={() => navigate("/countries")}>Go back</Button>
-        </Col>
-      </Row>
-    </Container>
+        </Row>
+        <Row>
+          <Col >
+            <Button variant='secondary' onClick={() => navigate("/countries")}>Go back</Button>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

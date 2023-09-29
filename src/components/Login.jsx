@@ -19,23 +19,29 @@ const Login = () => {
 
   return (
     <div>
-      <input
-        type='email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder='Email'
-      />
-      <input
-        type='password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder='Password'
-      />
-      <Button onClick={() => loginWithEmailAndPassword(email, password)}>Login</Button>
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        loginWithEmailAndPassword(email, password)
+      }}>
+        <input
+          type='email'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder='Email'
+        />
+        <input
+          type='password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder='Password'
+        />
+        <Button type="submit">Login</Button>
+      </form>s
       <div>
         <h3>Don't have an account?</h3>
         <Link to="/register">Register</Link>
       </div>
+
     </div>
   );
 };

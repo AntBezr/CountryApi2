@@ -22,9 +22,7 @@ const Layout = () => {
                 <LinkContainer to="/countries">
                   <Nav.Link>Countries</Nav.Link>
                 </LinkContainer>
-                {!user ? <LinkContainer to="/register">
-                  <Nav.Link>Register</Nav.Link>
-                </LinkContainer> : ""}
+
 
               </Nav>
             </Navbar.Collapse>

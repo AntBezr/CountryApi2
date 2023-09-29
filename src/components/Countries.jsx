@@ -33,31 +33,33 @@ const Countries = () => {
 
 
   return (
-    <Container fluid>
-      <Row>
-        <Col className="mt-5 d-flex justify-content-center">
-          <Form>
-            <Form.Control
-              style={{ width: '18rem' }}
-              type="search"
-              className="me-2 "
-              placeholder="Search for countries"
-              aria-label="Search"
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Form>
-        </Col>
-      </Row>
-      <Row xs={2} md={3} lg={4} className=" g-3">
-        {countriesList.filter((c) => {
-          return c.name.official.toLowerCase().includes(search.toLowerCase())
-        }).map((country) => {
-          return (
-            <CountryCard key={country.name.common} country={country} />
-          )
-        })}
-      </Row>
-    </Container>
+    <div>
+      <Container >
+        <Row>
+          <Col className="mt-5 d-flex justify-content-center">
+            <Form>
+              <Form.Control
+                style={{ width: '18rem' }}
+                type="search"
+                className="me-2 "
+                placeholder="Search for countries"
+                aria-label="Search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
+        <Row xs={2} md={3} lg={4} className=" g-3">
+          {countriesList.filter((c) => {
+            return c.name.official.toLowerCase().includes(search.toLowerCase())
+          }).map((country) => {
+            return (
+              <CountryCard key={country.name.common} country={country} />
+            )
+          })}
+        </Row>
+      </Container>
+    </div>
   );
 };
 
