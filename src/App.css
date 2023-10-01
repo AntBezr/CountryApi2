@@ -35,13 +35,16 @@
   filter: brightness(0.7);
 }
 
+.like {
+  animation: icon-like, 2s;
+}
 
-@keyframes App-logo-spin {
+@keyframes icon-like {
   from {
-    transform: rotate(0deg);
+    font-size: 16px;
   }
 
   to {
-    transform: rotate(360deg);
+    font-size: 24px;
   }
 }

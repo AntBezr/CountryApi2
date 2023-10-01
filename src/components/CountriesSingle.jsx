@@ -15,14 +15,13 @@ const CountriesSingle = () => {
 
 
   const country = location.state.country
-  console.log(country);
   useEffect(() => {
     if (!country.capital) {
       setLoading(false)
       setError(true)
     }
 
-    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`).catch((err) => {
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${country.latlng[0]}&lon=${country.latlng[1]}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`).catch((err) => {
       console.log(err)
       setError(true)
     })
@@ -30,8 +29,7 @@ const CountriesSingle = () => {
         setWeather(res.data)
         setLoading(false)
       })
-  }, [country.capital])
-  console.log(country);
+  }, [country.capital, country.latlng])
 
   if (loading) {
     return (
@@ -53,7 +51,7 @@ const CountriesSingle = () => {
       <Container>
         <Row className='d-flex justify-content-around'>
           <Col>
-            <Image thumbnail src={country.flags.png} alt={country.flag} />
+            <Image thumbnail={+true} src={country.flags.png} alt={country.flag} />
             <h2 className="display-4">{country.name.common}</h2>
             <h3>{country.capital}</h3>
             {errors && (
@@ -64,7 +62,7 @@ const CountriesSingle = () => {
                 <p>
                   Right now it is <strong>{parseInt(weather.main.temp)}</strong> degrees in {country.capital} and {weather.weather[0].description}
                 </p>
-                <Figure thumbnail className='figure'>
+                <Figure thumbnail={+true} className='figure'>
                   <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt={`${weather.weather[0].description}`} className="img-thumbnail" />
                 </Figure>
               </div>

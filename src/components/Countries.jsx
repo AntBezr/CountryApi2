@@ -12,7 +12,6 @@ const Countries = () => {
   const dispatch = useDispatch();
   const countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
-  const [filterResult, setFilterResult] = useState()
   const [search, setSearch] = useState('');
 
 
@@ -31,7 +30,7 @@ const Countries = () => {
   }
 
 
-
+  if (loading) { return <div>Loading...</div> }
   return (
     <div>
       <Container >
