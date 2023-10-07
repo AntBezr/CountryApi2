@@ -22,19 +22,15 @@ const Layout = () => {
                 <LinkContainer to="/countries">
                   <Nav.Link>Countries</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/favourites">
+                {user ? <LinkContainer to="/favourites">
                   <Nav.Link>Favourites</Nav.Link>
-                </LinkContainer>
-
-
+                </LinkContainer> : null}
               </Nav>
             </Navbar.Collapse>
             {user ? <Button onClick={logout} variant='light'>Logout</Button> :
               <LinkContainer to="/login">
                 <Button variant='light'> Login</Button>
-
               </LinkContainer>}
-
           </Container>
         </Navbar>
       </Row>

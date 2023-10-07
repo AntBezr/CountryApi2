@@ -9,6 +9,7 @@ import Favourites from './components/Favourites';
 import Home from './components/Home';
 import Layout from './pages/Layout';
 import Login from './components/Login';
+import NotFoundError from './components/NotFoundError';
 import ProtectedRoute from './auth/ProtectedRoute';
 import React from 'react';
 import Register from './components/Register';
@@ -24,12 +25,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route element={<ProtectedRoute user={user} />}>
 
             <Route path="/countries" element={<Countries />} />
             <Route path="/countries/:single" element={<CountriesSingle />} />
             <Route path="/favourites" element={<Favourites />} />
           </Route>
+          <Route path="/*" element={<NotFoundError />} />
         </Route>
       </Routes>
     </BrowserRouter>

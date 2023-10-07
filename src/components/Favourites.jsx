@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 
 import CountryCard from "./CountryCard";
 import ModalDelete from "./Modal";
-import { clearFavourites } from "../features/countries/favoriteSlice";
+import { getFavouritesFromFirbase } from "../features/countries/favoriteSlice";
 import { initializeCountries } from "../features/countries/countriesSlice";
 import { setModalShow } from "../features/countries/modalSlice";
 
 const Favourites = () => {
   const dispatch = useDispatch()
   let countriesList = useSelector((state) => state.countries.countries)
-  const loading = useSelector((state) => state.countries.loading)
+  const countriesLoading = useSelector((state) => state.countries.loading)
+  const favouritesLoading = useSelector((state) => state.favourites.loading)
   const [search, setSearch] = useState("")
   const favouritesList = useSelector((state) => state.favourites.favourites)
 
@@ -23,21 +24,24 @@ const Favourites = () => {
     countriesList = []
   }
   useEffect(() => {
-    dispatch(initializeCountries())
+    dispatch(initializeCountries());
+    dispatch(getFavouritesFromFirbase())
   }, [dispatch])
-  if (loading) {
+  if (countriesLoading || favouritesLoading) {
     return (
       <div>
-        <Col className="text-center m-5">
-          <Spinner
-            animation="border"
-            role="status"
-            className="center"
-            variant="info"
-          >
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </Col>
+        <Container>
+          <Col className="text-center m-5">
+            <Spinner
+              animation="border"
+              role="status"
+              className="center"
+              variant="info"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </Col>
+        </Container>
       </div>
     )
   }

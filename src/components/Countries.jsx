@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import CountryCard from './CountryCard';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { Spinner } from 'react-bootstrap';
 import { initializeCountries } from '../features/countries/countriesSlice';
 
 const Countries = () => {
@@ -30,12 +31,29 @@ const Countries = () => {
   }
 
 
-  if (loading) { return <div>Loading...</div> }
+  if (loading) {
+    return (
+      <Container fluid >
+        <Row className=' d-flex align-contentcenter'>
+          < Col className=' d-flex justify-content-center align-content-center flex-wrap' style={{ minHeight: "95vh" }}>
+            <Spinner animation='border'
+              role='status'
+              className='center'
+              variant='info'
+              style={{ width: '5rem', height: '5rem' }}
+            >
+              <span className='visually-hidden'>Loading...</span>
+            </Spinner>
+          </Col >
+        </Row >
+      </Container >
+    )
+  }
   return (
     <div>
       <Container >
         <Row>
-          <Col className="mt-5 d-flex justify-content-center">
+          <Col className="m-5 d-flex justify-content-center">
             <Form>
               <Form.Control
                 style={{ width: '18rem' }}

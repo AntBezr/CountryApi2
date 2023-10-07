@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -26,25 +27,36 @@
 
 .App-link {
   color: #61dafb;
+
 }
 
 .landingBg {
-  background: url("https://images.unsplash.com/photo-1562504208-03d85cc8c23e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3270&q=80") no-repeat center center/cover fixed;
+  background: url("https://images.unsplash.com/photo-1695983953103-17bce53a8138?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2042&q=80") no-repeat center center/cover;
+  background-attachment: fixed;
   width: 100vw;
-  height: 94vh;
+  height: 100vh;
   filter: brightness(0.7);
+  margin: 0;
+  padding: 0;
 }
 
-.like {
-  animation: icon-like, 2s;
+._404 {
+  font-size: 220px;
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+  height: 250px;
+  letter-spacing: 15px;
 }
 
-@keyframes icon-like {
-  from {
-    font-size: 16px;
-  }
-
-  to {
-    font-size: 24px;
-  }
+.text {
+  font-size: 70px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  margin: 19px 0px 0px 0px;
+  z-index: 3;
+  width: 100%;
+  line-height: 1.2em;
+  display: inline-block;
 }

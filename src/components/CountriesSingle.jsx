@@ -1,4 +1,4 @@
-import { Button, Col, Container, Figure, Image, Row, Spinner } from 'react-bootstrap';
+import { Button, Carousel, Col, Container, Figure, Image, Row, Spinner } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -31,19 +31,29 @@ const CountriesSingle = () => {
       })
   }, [country.capital, country.latlng])
 
+  const countryImage = () => {
+    return (
+      <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
+    )
+  }
+
+
   if (loading) {
     return (
-      <Container>
-        <Spinner animation='border'
-          role='status'
-          className='center'
-          variant='info'
-        >
-          <span className='visually-hidden'>Loading...</span>
-        </Spinner>
-
-
-      </Container>
+      <Container fluid >
+        <Row className=' d-flex align-contentcenter'>
+          < Col className=' d-flex justify-content-center align-content-center flex-wrap' style={{ minHeight: "95vh" }}>
+            <Spinner animation='border'
+              role='status'
+              className='center'
+              variant='info'
+              style={{ width: '5rem', height: '5rem' }}
+            >
+              <span className='visually-hidden'>Loading...</span>
+            </Spinner>
+          </Col >
+        </Row >
+      </Container >
     )
   }
   return (
@@ -69,7 +79,33 @@ const CountriesSingle = () => {
             )}
           </Col>
           <Col>
-            <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
+            <Carousel fade>
+              <Carousel.Item>
+                {countryImage()}
+
+                <Carousel.Caption>
+                  <h3>First slide label</h3>
+                  <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
+                <Carousel.Caption>
+                  <h3>Second slide label</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item>
+                <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} />
+                <Carousel.Caption>
+                  <h3>Third slide label</h3>
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+            {/*             <Image thumbnail src={`https://source.unsplash.com/1600x900/?${country.name.common}`} /> */}
           </Col>
 
         </Row>

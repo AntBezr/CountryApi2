@@ -1,4 +1,4 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, getDocs, getFirestore, query, where } from "firebase/firestore"
 import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth"
 
 import { initializeApp } from "firebase/app";
@@ -52,6 +52,45 @@ const registerWithEmailAndPassword = async (name, email, password) => {
 
 const logout = () => {
   signOut(auth)
+}
+
+export const addFavouriteToFirebase = async (uid, countryName) => {
+  try {
+    await addDoc(collection(db, `users/${uid}/favourites`), { countryName });
+    console.log("Favourites added to favourites firebase");
+  } catch (err) {
+    console.log("Error adding favourites to firebase", err);
+  }
+}
+
+export const removeFavouriteFromFirebase = async (uid, countryName) => {
+  try {
+    if (!countryName) {
+      console.log("Error removing favourites from firebase, name parameter is missing");
+      return;
+    }
+    const q = query(collection(db, `users/${uid}/favourites`), where("countryName", "==", countryName));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+      console.log("Favourites removed from firebase database");
+    });
+  } catch (err) {
+    console.log("Error removing favourites from firebase database", err);
+  }
+}
+
+export const clearFavoritesFromFirebase = async (uid) => {
+  try {
+    const q = query(collection(db, `users/${uid}/favourites`));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref);
+      console.log("Favourites removed from firebase database");
+    });
+  } catch (err) {
+    console.log("Error removing favourites from firebase database", err);
+  }
 }
 
 export { auth, db, loginWithEmailAndPassword, logout, registerWithEmailAndPassword };
