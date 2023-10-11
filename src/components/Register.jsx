@@ -98,12 +98,3 @@ const Register = () => {
 };
 
 export default Register;
-
-<div>
-
-
-  <div>
-    <h3>Already have an account</h3>
-    <Link to="/login">Login</Link>
-  </div>
-</div>

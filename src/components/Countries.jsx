@@ -7,6 +7,7 @@ import CountryCard from './CountryCard';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { Spinner } from 'react-bootstrap';
+import { getFavouritesFromFirbase } from '../features/countries/favoriteSlice';
 import { initializeCountries } from '../features/countries/countriesSlice';
 
 const Countries = () => {
@@ -15,12 +16,9 @@ const Countries = () => {
   const loading = useSelector((state) => state.countries.isLoading);
   const [search, setSearch] = useState('');
 
-
-
-
-
   useEffect(() => {
     dispatch(initializeCountries())
+    dispatch(getFavouritesFromFirbase())
   }, [dispatch])
 
   // We will be replacing this with data from our API.

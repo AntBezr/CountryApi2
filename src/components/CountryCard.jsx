@@ -1,8 +1,9 @@
 import { Card, Col, ListGroup } from "react-bootstrap"
-import { addFavourite, removeFavourite } from "../features/countries/favoriteSlice"
+import { addFavourite, getFavouritesFromFirbase, removeFavourite } from "../features/countries/favoriteSlice"
 import { useDispatch, useSelector } from "react-redux"
 
 import { LinkContainer } from "react-router-bootstrap"
+import { useEffect } from "react"
 
 const CountryCard = ({ country }) => {
   const favouritesList = useSelector((state) => state.favourites.favourites)
