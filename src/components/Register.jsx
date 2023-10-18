@@ -10,7 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [passwordConf, setPasswordConf] = useState('');
   const [name, setName] = useState('')
-  const [user, loading, error] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
   const navigate = useNavigate();
   const [passwordMatch, setPasswordMatch] = useState(true)
 
@@ -21,7 +21,7 @@ const Register = () => {
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/countries')
-  }, [user, loading, passwordMatch])
+  }, [user, loading, passwordMatch, navigate])
 
   const passwordConfirmation = (e) => {
     setPasswordConf(e.target.value)

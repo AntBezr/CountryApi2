@@ -25,9 +25,10 @@ cd countryapi2
 npm i
 ````
 
-then create .env file and add key for weather forecast in following format:
+then create .env file and add key for weather forecast and google map in following format:
 ```ènv
-REACT_APP_OPENWEATHER_KEY = {your key here}
+REACT_APP_OPENWEATHER_KEY = {your key here} 
+REACT_APP_GOOGLE_MAPS_API_KEY = {your key here}
 ```
 ## Screenshot
 

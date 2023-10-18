@@ -1,4 +1,4 @@
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Figure, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, loginWithEmailAndPassword } from "../auth/firebase";
 import { useEffect, useState } from "react";
@@ -8,13 +8,13 @@ import { useAuthState } from "react-firebase-hooks/auth"
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, loading, error] = useAuthState(auth)
+  const [user, loading] = useAuthState(auth)
   const navigate = useNavigate();
 
   useEffect(() => {
     if (loading) return;
     if (user) navigate('/countries')
-  }, [user, loading])
+  }, [user, loading, navigate])
 
 
   return (
@@ -59,11 +59,13 @@ const Login = () => {
                     <Button variant="primary" type="submit" className="w-100">Login</Button>
                   </Form>
                   <div><p className="mb-0"><Link to="/register" className="text-white-50 fw-bold">Don't have an account?</Link></p></div>
-                  <div className="mt-5">
+                  <Figure thumbnail={+true} className="figure mt-5">
+
                     <h5 className="mb-2">Feel free to use this account for exploring:</h5>
                     <p className="mb-2"> <strong>Email:</strong>test@test.com</p>
                     <p className="mb-2"><strong>Password:</strong>testtest</p>
-                  </div>
+
+                  </Figure>
                 </div>
               </Card.Body>
             </Card>

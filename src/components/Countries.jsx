@@ -21,13 +21,6 @@ const Countries = () => {
     dispatch(getFavouritesFromFirbase())
   }, [dispatch])
 
-  // We will be replacing this with data from our API.
-  const country = {
-    name: {
-      common: 'Example Country'
-    }
-  }
-
 
   if (loading) {
     return (
@@ -49,7 +42,7 @@ const Countries = () => {
   }
   return (
     <div>
-      <Container >
+      <Container>
         <Row>
           <Col className="m-5 d-flex justify-content-center">
             <Form>
