@@ -43,7 +43,7 @@ const CountryCard = ({ country }) => {
             >
               <ListGroup.Item>
                 <i className="bi bi-translate me-2"></i>
-                {/* Object.value(country.languages ?? {}).join(", ") */}
+
                 {country.languages ? Object.keys(country.languages).map((lang) => {
                   return (
                     country.languages[lang])
@@ -56,10 +56,7 @@ const CountryCard = ({ country }) => {
                     country.currencies[cur] ? Object.keys(country.currencies[cur]).map((item) => country.currencies[cur][item]).join(', ') : "")
                 }) : ""}
 
-                {/* Object.values(county.currencies ?? {}).map((currency)=>(return{
-                  currency.name
-                  currency.symbol
-                }) */}
+
               </ListGroup.Item>
               <ListGroup.Item>
                 <i className="bi bi-people me-2"> {country.population.toLocaleString()}</i>

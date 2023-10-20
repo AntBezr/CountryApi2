@@ -1,7 +1,7 @@
 import { Button, Carousel, Col, Container, Figure, Image, Row, Spinner } from 'react-bootstrap';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
@@ -38,12 +38,7 @@ const CountriesSingle = () => {
         setLoading(false)
       })
 
-    countriesList.map((c) => (
-      country.borders.includes(c.cioc) ?
-        setNeighbors([
-          ...neighbors, { id: nextId++, name: c.name.common }
-        ]) : ""
-    ))
+
   }, [country.capital, country.latlng])
 
 
@@ -65,7 +60,7 @@ const CountriesSingle = () => {
     } else return 10
   }
 
-  console.log(neighbors);
+
 
   if (loading) {
     return (
@@ -156,7 +151,7 @@ const CountriesSingle = () => {
               </div>
             )}
           </Col>
-          <Col >
+          <Col className='d-flex justify-content-center' >
             {
               <Figure style={{ position: 'relative', width: "800px", height: "500px", overflow: "hidden" }}>
                 <GoogleMap
@@ -168,19 +163,35 @@ const CountriesSingle = () => {
             }
           </Col>
         </Row>
-        <Row>
-          <Col >
-            <Button variant='secondary' onClick={() => navigate("/countries")}>Go back</Button>
+        <Row className='mt-5 mb-5'>
+          <Col xl={9} className='d-flex-column align-items-center justify-content-center'>
+            <h3>Land Neighbors</h3>
+            <Col>
+              {
+                countriesList.map((c) => {
+                  if (country.borders?.includes(c.cioc) || country.borders?.includes(c.cca3)) {
+                    return (
+                      < LinkContainer
+                        key={c.name.common}
+                        to={`/countries/${c.name.common}`
+                        }
+                        state={{ country: c }
+                        }
+                        className="cursor-pointer"
+                      >
+                        <Button variant="dark" className='mx-2  my-2'>{c.name.common}</Button>
+                      </LinkContainer>
+                    )
+                  }
+                })}
+            </Col>
           </Col>
-          <Col>
-            {
-              neighbors.map((c) => {
-                <Button>{c.name}</Button>
-              })}
+          <Col xl={3} className='d-flex align-items-center'>
+            <Button variant='secondary' onClick={() => navigate(-1)}>Go back</Button>
           </Col>
         </Row>
       </Container>
-    </div>
+    </div >
   );
 };
 

@@ -1,3 +1,4 @@
+import { Button, Spinner } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,7 +7,6 @@ import Container from 'react-bootstrap/Container';
 import CountryCard from './CountryCard';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Spinner } from 'react-bootstrap';
 import { getFavouritesFromFirbase } from '../features/countries/favoriteSlice';
 import { initializeCountries } from '../features/countries/countriesSlice';
 
@@ -15,12 +15,31 @@ const Countries = () => {
   const countriesList = useSelector((state) => state.countries.countries);
   const loading = useSelector((state) => state.countries.isLoading);
   const [search, setSearch] = useState('');
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     dispatch(initializeCountries())
     dispatch(getFavouritesFromFirbase())
+
   }, [dispatch])
 
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
+  }
+
+  window.addEventListener('scroll', toggleVisible);
 
   if (loading) {
     return (
@@ -42,7 +61,7 @@ const Countries = () => {
   }
   return (
     <div>
-      <Container>
+      <Container className="position-relative">
         <Row>
           <Col className="m-5 d-flex justify-content-center">
             <Form>
@@ -66,6 +85,12 @@ const Countries = () => {
             )
           })}
         </Row>
+        {visible && (
+          <Button variant='dark' className='position-fixed bottom-0 end-0 z-50 cursor-pointer p-2 m-5'
+            onClick={scrollToTop}>
+            <i className="bi bi-arrow-up-circle h2" ></i>
+          </Button>
+        )}
       </Container>
     </div>
   );
