@@ -1,9 +1,9 @@
 import { Button, Carousel, Col, Container, Figure, Image, Row, Spinner } from 'react-bootstrap';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { addFavourite, removeFavourite } from '../features/countries/favoriteSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
@@ -13,12 +13,12 @@ const CountriesSingle = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const { isMapLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY })
   const [weather, setWeather] = useState('')
   const [errors, setError] = useState(false)
   const [loading, setLoading] = useState(true)
   const favouritesList = useSelector((state) => state.favourites.favourites)
 
+  useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY })
 
   let countriesList = useSelector((state) => state.countries.countries)
 

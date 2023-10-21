@@ -7,8 +7,9 @@ CountryApp is a comprehensive web application designed to explore information ab
 Built with:
 
 - ReactJs
-- Redux Toolkit
-- Firebase
+- React Router Dom
+- React Redux and Redux Toolkit
+- Firebase (Authentication and databse)
 - Axios
 - Bootstrap
 - ESLing
@@ -32,7 +33,10 @@ REACT_APP_GOOGLE_MAPS_API_KEY = {your key here}
 ```
 ## Screenshot
 
-
+<img width="1673" alt="Screenshot" src="https://github.com/AntBezr/CountryApi2/assets/117649417/f4943669-fef6-4b60-899c-00ea9cb26cc1">
+<img width="1672" alt="Screenshot" src="https://github.com/AntBezr/CountryApi2/assets/117649417/9af7df61-6bad-44c8-a0c6-82e88d0dd347">
+<img width="1663" alt="Screenshot" src="https://github.com/AntBezr/CountryApi2/assets/117649417/40a712ac-849a-4303-8273-9875d20bba11">
+<img width="1585" alt="Screenshot" src="https://github.com/AntBezr/CountryApi2/assets/117649417/429e1cff-16d0-47a7-85b8-3e02106b9fdb">
 
 ## Sources
 

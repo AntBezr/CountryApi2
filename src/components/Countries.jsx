@@ -16,6 +16,7 @@ const Countries = () => {
   const loading = useSelector((state) => state.countries.isLoading);
   const [search, setSearch] = useState('');
   const [visible, setVisible] = useState(false);
+  const [region, setRegion] = useState('');
 
   useEffect(() => {
     dispatch(initializeCountries())
