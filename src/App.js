@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./App.css"
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import Countries from './components/Countries';
 import CountriesSingle from './components/CountriesSingle';
@@ -19,7 +19,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 const App = () => {
   const [user] = useAuthState(auth)
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -35,7 +35,7 @@ const App = () => {
           <Route path="/*" element={<NotFoundError />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

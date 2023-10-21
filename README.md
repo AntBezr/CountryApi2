@@ -58,4 +58,4 @@ For now this app is failing because of Firebase config.
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AntBezr_CountryApi2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AntBezr_CountryApi2)
 
 ## Live version
-#### [App link]()
+#### [App link](https://antbezr.github.io/CountryApi2/home)
