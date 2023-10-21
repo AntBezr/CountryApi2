@@ -1,22 +1,23 @@
 import { Button, Carousel, Col, Container, Figure, Image, Row, Spinner } from 'react-bootstrap';
 import { GoogleMap, useLoadScript } from '@react-google-maps/api';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { addFavourite, removeFavourite } from '../features/countries/favoriteSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { LinkContainer } from 'react-router-bootstrap';
 import React from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 
 const CountriesSingle = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { isMapLoaded } = useLoadScript({ googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY })
-  let nextId = 0;
   const [weather, setWeather] = useState('')
   const [errors, setError] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [neighbors, setNeighbors] = useState([])
+  const favouritesList = useSelector((state) => state.favourites.favourites)
 
 
   let countriesList = useSelector((state) => state.countries.countries)
@@ -28,7 +29,6 @@ const CountriesSingle = () => {
       setError(true)
     }
 
-    console.log(country);
     axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${country.latlng[0]}&lon=${country.latlng[1]}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`).catch((err) => {
       console.log(err)
       setError(true)
@@ -60,7 +60,10 @@ const CountriesSingle = () => {
     } else return 10
   }
 
-
+  const favClickHandler = (e, isFav) => {
+    e.stopPropagation()
+    isFav ? dispatch(removeFavourite(country.name.common)) : dispatch(addFavourite(country.name.common))
+  }
 
   if (loading) {
     return (
@@ -83,10 +86,16 @@ const CountriesSingle = () => {
   return (
     <div>
       <Container className='mt-5'>
-        <Row className='d-flex justify-content-around mb-5'>
+        <Row className='d-flex justify-content-around mb-5 flex-column flex-md-row'>
           <Col style={{ maxWidth: "30%" }}>
             <Image thumbnail={+true} src={country.flags.png} alt={country.flag} />
-            <h2 className="display-4">{country.name.common}</h2>
+            <Col className='d-flex flex-direction-row align-items-center'>
+              <h2 className="display-4">{country.name.common}</h2>
+              {favouritesList.includes(country.name.common) ? (
+
+                <i className="bi bi-bookmark-star-fill h3 m-1 text-warning " onClick={(e) => favClickHandler(e, true)}></i>
+              ) : <i className="bi bi-bookmark-plus h3 m-1" onClick={(e) => favClickHandler(e, false)}></i>}
+            </Col>
             <h3>{country.capital}</h3>
             <h4>{country.continents.join(', ')}</h4>
 
@@ -165,8 +174,10 @@ const CountriesSingle = () => {
         </Row>
         <Row className='mt-5 mb-5'>
           <Col xl={9} className='d-flex-column align-items-center justify-content-center'>
-            <h3>Land Neighbors</h3>
+
             <Col>
+              {
+                country.borders?.length > 0 ? <h3 className='text-center'>Land neighbors</h3> : <h3 className='text-center'>This country has no land borders</h3>}
               {
                 countriesList.map((c) => {
                   if (country.borders?.includes(c.cioc) || country.borders?.includes(c.cca3)) {
@@ -183,11 +194,12 @@ const CountriesSingle = () => {
                       </LinkContainer>
                     )
                   }
-                })}
+                })
+              }
             </Col>
           </Col>
           <Col xl={3} className='d-flex align-items-center'>
-            <Button variant='secondary' onClick={() => navigate(-1)}>Go back</Button>
+            <Button variant='secondary' onClick={() => navigate(-1)}> <i class="bi bi-arrow-return-right"></i>Go back</Button>
           </Col>
         </Row>
       </Container>

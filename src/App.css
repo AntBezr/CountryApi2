@@ -3,6 +3,10 @@
   min-height: 100vh;
 }
 
+body {
+  overscroll-behavior-y: none;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -32,13 +36,19 @@
 
 .landingBg {
   background: url("https://images.unsplash.com/photo-1695983953103-17bce53a8138?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2042&q=80") no-repeat center center/cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-color: black;
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: auto;
   filter: brightness(0.7);
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
+}
+
+.landingBg .row {
+  --bs-gutter-x: 0px;
+  padding-left: 0;
 }
 
 ._404 {
@@ -97,10 +107,5 @@
     font-size: 200px;
     height: 200px;
     letter-spacing: 10px;
-  }
-
-  .LandingText p,
-  a {
-    font-size: 15px;
   }
 }

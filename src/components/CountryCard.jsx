@@ -27,10 +27,9 @@ const CountryCard = ({ country }) => {
 
             <Card.Title className="d-flex flex-row justify-content-between">{country.name.common}
               {favouritesList.includes(country.name.common) ? (
-                < i className="bi bi-star-fill h3 m-1 text-warning" onClick={(e) => favClickHandler(e, true)}></i>
 
-              ) : <i className="bi bi-star h3 m-1 text-warning" onClick={(e) => favClickHandler(e, false)}></i>}
-
+                <i className="bi bi-bookmark-star-fill h3 m-1 text-warning " onClick={(e) => favClickHandler(e, true)}></i>
+              ) : <i className="bi bi-bookmark-plus h3 m-1" onClick={(e) => favClickHandler(e, false)}></i>}
             </Card.Title>
 
 
