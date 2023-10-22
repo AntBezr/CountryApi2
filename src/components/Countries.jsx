@@ -24,6 +24,8 @@ const Countries = () => {
 
   }, [dispatch])
 
+
+
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 300) {
@@ -39,6 +41,8 @@ const Countries = () => {
       behavior: "smooth"
     })
   }
+
+
 
   window.addEventListener('scroll', toggleVisible);
 
@@ -64,8 +68,8 @@ const Countries = () => {
     <div>
       <Container className="position-relative">
         <Row>
-          <Col className="m-5 d-flex justify-content-center">
-            <Form>
+          <Col className="m-5 d-flex justify-content-center" >
+            <Form className='d-flex flex-row justify-space-around w-50'>
               <Form.Control
                 style={{ width: '18rem' }}
                 type="search"
@@ -74,12 +78,22 @@ const Countries = () => {
                 aria-label="Search"
                 onChange={(e) => setSearch(e.target.value)}
               />
+
+              <Form.Select aria-label="Default select example" onChange={(e) => { setRegion(e.target.value) }}>
+                <option value="">All</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Africa">Africa</option>
+                <option value="Oceania">Oceania</option>
+                <option value="Americas">Americas</option>
+                <option value="Antarctic">Antarctic</option>
+              </Form.Select>
             </Form>
           </Col>
         </Row>
         <Row xs={2} md={3} lg={4} className=" g-3">
           {countriesList.filter((c) => {
-            return c.name.official.toLowerCase().includes(search.toLowerCase())
+            return c.name.official.toLowerCase().includes(search.toLowerCase()) && c.region.includes(region)
           }).map((country) => {
             return (
               <CountryCard key={country.name.common} country={country} />
@@ -93,7 +107,7 @@ const Countries = () => {
           </Button>
         )}
       </Container>
-    </div>
+    </div >
   );
 };
 
