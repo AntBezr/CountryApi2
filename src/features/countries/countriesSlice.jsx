@@ -4,7 +4,12 @@ import { createSlice } from "@reduxjs/toolkit"
 export const countriesSlice = createSlice({
   name: "countries",
   initialState: {
-    countries: [],
+    countries: [{
+      name: {
+        common: '',
+        official: ''
+      }
+    }],
     isLoading: true
   },
   reducers: {
