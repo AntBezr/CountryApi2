@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import countriesAPI from '../../services/countries'
 import { createSlice } from "@reduxjs/toolkit"
 
@@ -6,7 +7,7 @@ export const countriesSlice = createSlice({
   initialState: {
     countries: [{
       name: {
-        common: '',
+        common: PropTypes.string,
         official: ''
       }
     }],

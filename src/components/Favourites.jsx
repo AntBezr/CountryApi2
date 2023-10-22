@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
 import ModalDelete from "./Modal";
 import { getFavouritesFromFirbase } from "../features/countries/favoriteSlice";
-import { initializeCountries } from "../features/countries/countriesSlice";
+import { initializeCountries } from "../features/countries/countriesSlice.tsx";
 import { setModalShow } from "../features/countries/modalSlice";
 
 const Favourites = () => {
