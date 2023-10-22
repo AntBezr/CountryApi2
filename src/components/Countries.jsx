@@ -8,7 +8,7 @@ import CountryCard from './CountryCard';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { getFavouritesFromFirbase } from '../features/countries/favoriteSlice';
-import { initializeCountries } from '../features/countries/countriesSlice.tsx';
+import { initializeCountries } from '../features/countries/countriesSlice.jsx';
 
 const Countries = () => {
   const dispatch = useDispatch();
