@@ -199,7 +199,7 @@ const CountriesSingle = () => {
             </Col>
           </Col>
           <Col xl={3} className='d-flex align-items-center'>
-            <Button variant='secondary' onClick={() => navigate(-1)}> <i class="bi bi-arrow-return-right"></i>Go back</Button>
+            <Button variant='secondary' onClick={() => navigate(-1)}> <i className="bi bi-arrow-return-right"></i>Go back</Button>
           </Col>
         </Row>
       </Container>
